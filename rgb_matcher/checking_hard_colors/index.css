@@ -1,0 +1,14 @@
+ul
+{
+    width: 50%;
+}
+li
+{
+    cursor: pointer;
+    display: block;
+    height: 100px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 100px;
+}
