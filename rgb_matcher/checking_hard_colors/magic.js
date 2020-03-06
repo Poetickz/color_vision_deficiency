@@ -64,10 +64,57 @@ var colours = [
 [65,65,65]
 ];
 
+
+function move_comas(rgb) {
+  return rgb[0].toString()+"-"+rgb[1].toString()+"-"+rgb[2].toString()
+}
+
+function change_color(rgb,level) {
+  var palette2 = $('ul#2');
+  var new_rgb = ''
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:5002/changecolor/"+move_comas(rgb)+"/"+level,
+    data: { param: new_rgb}
+  }).done(function( o ) {
+    new_rgb = o.data.join(',')
+    console.log(new_rgb)
+    palette2.append($('<li> '+new_rgb+'</li>').css('background-color', 'rgb('+new_rgb +')'));
+  });
+}
+
+function render_colors(level=0.5) {
+  for (var i = 0; i < colours.length; i++)
+  { change_color(colours[i],level)}
+}
+
 $(document).ready(function() {
-  var palette = $('ul');
+
+
+    var $select = $(".0-100");
+    for (i=0;i<=100;i+=10){
+        if(i==50){
+          $select.append($('<option selected></option>').val(i/100).html(i.toString()+"%"))
+
+        }
+        $select.append($('<option></option>').val(i/100).html(i.toString()+"%"))
+    }
+
+
+  var palette = $('ul#1');
   for (var i = 0; i < colours.length; i++)
   {
-      palette.append($('<li />').css('background-color', 'rgb(' + colours[i].join(',') + ')'));
+      palette.append($('<li>' +colours[i]+'</li>').css('background-color', 'rgb(' + colours[i].join(',') + ')'));
   }
+  render_colors()
+});
+
+$(document).ready(function() {
+  $('select').change( function () {
+    level = $('.0-100 :selected').val()
+    var palette2 = $('ul#2');
+    palette2.empty()
+    render_colors(level)
+    
+  })
 });
