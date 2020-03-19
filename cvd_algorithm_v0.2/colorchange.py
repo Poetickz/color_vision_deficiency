@@ -18,7 +18,7 @@ def find_apx_intensity(rgb_id):
 
 def convert(rgb_tuple, intensity, level):
     if intensity > 0:
-        return (brigthness_level(rgb_tuple[0],intensity,level), brigthness_level(rgb_tuple[1],intensity,level), brigthness_level(rgb_tuple[2],intensity,level))
+        return (brigthness_level(rgb_tuple[0],intensity_rgb[intensity],level), brigthness_level(rgb_tuple[1],intensity_rgb[intensity],level), brigthness_level(rgb_tuple[2],intensity_rgb[intensity],level))
         
     return ((rgb_tuple[0]*level, rgb_tuple[1]*level, rgb_tuple[2]*level))
 
