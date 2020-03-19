@@ -79,13 +79,17 @@ data_intensity = get_data_from_file_intensity("refactored_data.txt")
 
 f = open("rgb_ids.txt","w+")
 f2 = open("full_rgb.txt","w+")
+f3 = open("coma_rgb.txt", "w+")
 aux = (0,0,0)
 for wave, intensity in data_intensity.items():
     rgb = get_rgb_tuple(wave, data_cie)
     if (aux != rgb):
         aux = rgb
         print(rgb)
+        print('0.'+str(tuple_to_rgbid(id_format(rgb))))
         f.write('0.'+str(tuple_to_rgbid(id_format(rgb)))+"\t"+str(intensity)+"\n")
         f2.write(str(rgb[0])+" "+str(rgb[1])+" "+str(rgb[2])+" "+str(intensity)+"\n")
+        f3.write(str(rgb[0])+","+str(rgb[1])+","+str(rgb[2])+","+str(intensity)+"\n")
 f.close()
 f2.close()
+f3.close()
