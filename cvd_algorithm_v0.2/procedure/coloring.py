@@ -59,7 +59,7 @@ def spectral_to_rgb(wave, data_cie):
     z = data_cie[wave][2]
     total = x+y+z
 
-    x1 = y/total
+    x1 = x/total
     y1 = y/total
     z1 = z/total
 
