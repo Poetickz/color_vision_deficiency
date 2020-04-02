@@ -36,8 +36,6 @@ def convert(rgb_tuple, intensity, level):
         return (rgb_tuple[0], brigthness_level(rgb_tuple[1],intensity_hsl[intensity],level), rgb_tuple[2])
         
 def brigthness_level(color, downgrade, level):
-    print(level, downgrade)
-    print((color*level)*(1 + downgrade))
     return (color*level)*(1 + downgrade)
 
 def rgb_int_to_float(rgb_int):
